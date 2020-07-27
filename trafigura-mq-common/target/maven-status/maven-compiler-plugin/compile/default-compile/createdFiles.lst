@@ -1,0 +1,3 @@
+com/trafigura/mq/common/config/ActiveMQConfig.class
+com/trafigura/mq/common/DBSaveMessage.class
+com/trafigura/mq/common/OrderMessage.class

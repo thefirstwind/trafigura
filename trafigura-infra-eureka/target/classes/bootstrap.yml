@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: trafigura-eureka-center
+  cloud:
+    ## 网卡设置
+    inetutils: 
+      ## 忽略的网卡
+      ignoredInterfaces:  
+        - docker0
+        - veth.*
+        - VM.*
+      ## 优先的网段
+      preferredNetworks:  
+        - 192.168
+logging:
+  level:
+    root: INFO
+    ## 屏蔽注册中心心跳日志
+    com.netflix.eureka.registry.AbstractInstanceRegistry: ERROR

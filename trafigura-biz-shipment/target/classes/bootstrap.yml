@@ -1,0 +1,96 @@
+spring:
+  application:
+    name: trafigura-biz-shipm
+  cloud:
+    config:
+      discovery:
+        service-id: ${service_springcloud_configserver}
+        #                 修改为自己的配置中心的地址
+  activemq:
+      in-memory: true
+      broker-url: vm://embedded?broker.persistent=false,useShutdownHook=true
+      non-blocking-redelivery: true
+      packages:
+        trust-all: false
+        trusted: com.trafigura
+      pool:
+        block-if-full: true
+        block-if-full-timeout: -1
+        create-connection-on-startup: true
+        enabled: false
+        expiry-timeout: 0
+        idle-timeout: 30000
+        # set mq pool, just 1 pool
+        max-connections: 1
+        maximum-active-session-per-connection: 500
+        reconnect-on-exception: true
+        time-between-expiration-check: -1
+        use-anonymous-producers: true
+  jms:
+    listener:
+      acknowledge-mode: auto
+      auto-startup: true
+      concurrency: 5
+      max-concurrency: 10
+    pub-sub-domain: false
+    template:
+      default-destination:
+      delivery-mode: non_persistent
+      priority: 100
+      qos-enabled: true
+      receive-timeout: 1000
+      time-to-live: 36000
+  jpa:
+    generate-ddl: false
+    show-sql: true #启用SQL语句的日志记录
+    hibernate:
+      ddl-auto: create-drop #设置ddl模式
+  datasource:
+    ##数据库连接设置
+    #配置h2数据库的连接地址
+    url: jdbc:h2:mem:testdb;IFEXISTS=FALSE;
+    username: sa  #配置数据库用户名
+    password: sa  #配置数据库密码
+    driverClassName: org.h2.Driver  #配置JDBC Driver
+    ##数据初始化设置
+    schema: classpath:db/schema.sql  #进行该配置后，每次启动程序，程序都会运行resources/db/schema.sql文件，对数据库的结构进行操作。
+    data: classpath:db/data.sql  #进行该配置后，每次启动程序，程序都会运行resources/db/data.sql文件，对数据库的数据操作。
+    platform: h2  #表明使用的数据库平台是h2
+  ##h2 web console设置
+  h2:
+    console:
+      settings:
+        web-allow-others: true # 进行该配置后，h2 web consloe就可以在远程访问了。否则只能在本机访问。
+      path: /h2 #进行该配置，你就可以通过YOUR_URL/h2访问h2 web consloe。YOUR_URL是你程序的访问URl。
+      enabled: true #进行该配置，程序开启时就会启动h2 web consloe。当然这是默认的，如果你不想在启动程序时启动h2 web consloe，那么就设置为false。
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+server:
+  port: 8081   
+
+health:
+  config:
+    enabled: true
+
+# 微服务注册的地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:3000/eureka/
+    registry-fetch-interval-seconds: 30
+    fetch-registry: false
+    register-with-eureka: false
+
+security:
+  # 与oauth2-server对应的配置
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8081/users/current
+    client:
+      id: client_2
+      client-secret: 123456
+      access-token-uri: http://localhost:8081/oauth/token
+      grant-type: client_credentials,password
+      scope: server

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: xingxn
+Build-Jdk: 11.0.2
+Implementation-Title: trafigura-mq-sender
+Implementation-Version: 1.1
+Implementation-Vendor-Id: com.trafigura
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/trafigura-parent/trafigura-mq-sender
+Created-By: Maven Integration for Eclipse
+
