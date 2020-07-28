@@ -27,7 +27,7 @@ public class DBSaveSenderSingleThreadPool {
 		return singleThreadExecutor;
 	}
 	
-	public void execute(DBSaveSender dbSaveSender, DBSaveMessage saveMsg) {
+	public void execute(DBSaveSender dbSaveSender, DBSaveMessage<?> saveMsg) {
 		Runnable task = new DBSaveSenderThread(dbSaveSender, saveMsg);
 		singleThreadExecutor.execute(task);
 	}

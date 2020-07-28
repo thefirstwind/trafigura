@@ -18,7 +18,7 @@ public class DBSaveSender {
     @Autowired
     private JmsTemplate jmsTemplate;
 
-    public void send(DBSaveMessage myMessage) {
+    public void send(DBSaveMessage<?> myMessage) {
         log.info("sending with convertAndSend() to queue <" + myMessage + ">");
         jmsTemplate.convertAndSend(ORDER_DB_SAVE_QUEUE, myMessage);
     }

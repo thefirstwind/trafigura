@@ -8,9 +8,6 @@ import java.util.LinkedHashMap;
 import javax.jms.Session;
 
 import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.Message;
@@ -35,9 +32,9 @@ public class DBSaveConsumer {
 
     
     @JmsListener(destination = ORDER_DB_SAVE_QUEUE)
-    public void receiveMessage(@Payload DBSaveMessage saveMessage,
+    public void receiveMessage(@Payload DBSaveMessage<?> saveMessage,
                                @Headers MessageHeaders headers,
-                               Message message, Session session) {
+                               Message<?> message, Session session) {
         log.info("received <" + saveMessage + ">");
 
         log.info("- - - - - - - - - - - - - - - - - - - - - - - -");
@@ -54,7 +51,7 @@ public class DBSaveConsumer {
          * Payload Json: 
          * {"username":"A0001","parentId":0,"quantity":2000,"insTm":1595798463329,"updTm":1595798463329,"delfg":0,"version":0}
          */
-        LinkedHashMap hashMap = (LinkedHashMap) saveMessage.getContent();
+        LinkedHashMap<?, ?> hashMap = (LinkedHashMap<?, ?>) saveMessage.getContent();
         Shipment shipment = new Shipment();
        if(hashMap.get("id") != null) {
            shipment.setId(Long.valueOf(hashMap.get("id").toString()));

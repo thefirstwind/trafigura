@@ -6,9 +6,9 @@ public class DBSaveSenderThread implements Runnable {
 	
 	private DBSaveSender saveSend = null;
 	
-	private DBSaveMessage saveMessage = null;
+	private DBSaveMessage<?> saveMessage = null;
 
-	public DBSaveSenderThread(DBSaveSender _orderSend, DBSaveMessage _message) {
+	public DBSaveSenderThread(DBSaveSender _orderSend, DBSaveMessage<?> _message) {
 		this.saveSend = _orderSend;
 		this.saveMessage = _message;
 	}

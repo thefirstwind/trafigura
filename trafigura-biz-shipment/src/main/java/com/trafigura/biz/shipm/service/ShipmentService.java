@@ -1,6 +1,5 @@
 package com.trafigura.biz.shipm.service;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,19 +10,12 @@ import java.util.Map;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.google.gson.Gson;
-import com.trafigura.biz.shipm.controller.ShipmentController;
 import com.trafigura.biz.shipm.domain.entity.Shipment;
 import com.trafigura.biz.shipm.domain.entity.ShipmentNode;
 import com.trafigura.biz.shipm.domain.repository.ShipmentRepository;
 import com.trafigura.biz.shipm.vo.request.DBDeleteRequest;
-import com.trafigura.biz.shipm.vo.request.DBGetRequest;
 import com.trafigura.biz.shipm.vo.request.DBInsertRequest;
 import com.trafigura.biz.shipm.vo.request.DBUpdateRequest;
 import com.trafigura.biz.shipm.vo.request.ShipmentMergeRequest;
@@ -83,7 +75,7 @@ public class ShipmentService {
     	newRecord.setUpdTm(currentTime);
     	newRecord.setDelfg(0);
     	newRecord.setVersion(0);
-		DBSaveMessage dbSaveMsg = new DBSaveMessage();
+		DBSaveMessage<Shipment> dbSaveMsg = new DBSaveMessage<Shipment>();
 		dbSaveMsg.setContent(newRecord);
 		dbSaveMsg.setTimestamp(new DateTime().toDate());
 		dbSaveThreadPool.execute(dbSaveSender, dbSaveMsg);
@@ -100,7 +92,7 @@ public class ShipmentService {
     	newRecord.setUpdTm(currentTime);
     	newRecord.setDelfg(0);
     	newRecord.setVersion(0);
-		DBSaveMessage dbSaveMsg = new DBSaveMessage();
+		DBSaveMessage<Shipment> dbSaveMsg = new DBSaveMessage<Shipment>();
 		dbSaveMsg.setContent(newRecord);
 		dbSaveMsg.setTimestamp(new DateTime().toDate());
 		dbSaveThreadPool.execute(dbSaveSender, dbSaveMsg);
@@ -126,7 +118,7 @@ public class ShipmentService {
         	newRecord.setUpdTm(currentTime);
         	newRecord.setDelfg(0);
         	newRecord.setVersion(0);
-    		DBSaveMessage dbSaveMsg = new DBSaveMessage();
+    		DBSaveMessage<Shipment> dbSaveMsg = new DBSaveMessage<Shipment>();
     		dbSaveMsg.setContent(newRecord);
     		dbSaveMsg.setTimestamp(new DateTime().toDate());
     		dbSaveThreadPool.execute(dbSaveSender, dbSaveMsg);
@@ -152,7 +144,7 @@ public class ShipmentService {
     	updRecord.setQuantity(req.getQuantity());
     	updRecord.setUpdTm(currentTime);
     	updRecord.setVersion(updRecord.getVersion() + 1);
-		DBSaveMessage dbSaveMsg = new DBSaveMessage();
+		DBSaveMessage<Shipment> dbSaveMsg = new DBSaveMessage<Shipment>();
 		dbSaveMsg.setContent(updRecord);
 		dbSaveMsg.setTimestamp(new DateTime().toDate());
 		dbSaveThreadPool.execute(dbSaveSender, dbSaveMsg);
@@ -171,7 +163,7 @@ public class ShipmentService {
     	updRecord.setQuantity(req.getQuantity());
     	updRecord.setUpdTm(currentTime);
     	updRecord.setVersion(updRecord.getVersion() + 1);
-		DBSaveMessage dbSaveMsg = new DBSaveMessage();
+		DBSaveMessage<Shipment> dbSaveMsg = new DBSaveMessage<Shipment>();
 		dbSaveMsg.setContent(updRecord);
 		dbSaveMsg.setTimestamp(new DateTime().toDate());
 		dbSaveThreadPool.execute(dbSaveSender, dbSaveMsg);
@@ -193,7 +185,7 @@ public class ShipmentService {
     	updRecord.setUpdTm(currentTime);
     	updRecord.setDelfg(1);
     	updRecord.setVersion(updRecord.getVersion() + 1);
-		DBSaveMessage dbSaveMsg = new DBSaveMessage();
+		DBSaveMessage<Shipment> dbSaveMsg = new DBSaveMessage<Shipment>();
 		dbSaveMsg.setContent(updRecord);
 		dbSaveMsg.setTimestamp(new DateTime().toDate());
 		dbSaveThreadPool.execute(dbSaveSender, dbSaveMsg);
@@ -210,7 +202,7 @@ public class ShipmentService {
     	updRecord.setUpdTm(currentTime);
     	updRecord.setDelfg(1);
     	updRecord.setVersion(updRecord.getVersion() + 1);
-		DBSaveMessage dbSaveMsg = new DBSaveMessage();
+		DBSaveMessage<Shipment> dbSaveMsg = new DBSaveMessage<Shipment>();
 		dbSaveMsg.setContent(updRecord);
 		dbSaveMsg.setTimestamp(new DateTime().toDate());
 		dbSaveThreadPool.execute(dbSaveSender, dbSaveMsg);

@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-import com.trafigura.biz.shipm.domain.entity.Shipment;
-import com.trafigura.biz.shipm.domain.repository.ShipmentRepository;
 import com.trafigura.biz.shipm.service.ShipmentService;
 import com.trafigura.biz.shipm.vo.request.DBDeleteRequest;
 import com.trafigura.biz.shipm.vo.request.DBGetRequest;
@@ -30,8 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @Slf4j
 public class ShipmentController {
-    @Autowired
-    private ShipmentRepository shipmentRepository;
     @Autowired
     private ShipmentService shipmentService;
 

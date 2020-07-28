@@ -25,7 +25,7 @@ public class OrderedConsumer {
     @JmsListener(destination = ORDER_QUEUE)
     public void receiveMessage(@Payload OrderMessage order,
                                @Headers MessageHeaders headers,
-                               Message message, Session session) {
+                               Message<?> message, Session session) {
         log.info("received <" + order + ">");
 
         log.info("- - - - - - - - - - - - - - - - - - - - - - - -");

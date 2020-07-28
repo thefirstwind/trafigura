@@ -67,10 +67,10 @@ public class ActiveMQController {
 	}
 	
     @RequestMapping(value ="/activemq/dbstore", method = RequestMethod.POST)
-	public void dbstore(@RequestBody Object reqjson) {
+	public <T> void dbstore(@RequestBody T reqjson) {
 		log.info("sendQueue {}", reqjson); 
 		
-		DBSaveMessage dbSaveMsg = new DBSaveMessage();
+		DBSaveMessage<T> dbSaveMsg = new DBSaveMessage<T>();
 		dbSaveMsg.setContent(reqjson);
 		dbSaveMsg.setTimestamp(new DateTime().toDate());
 
