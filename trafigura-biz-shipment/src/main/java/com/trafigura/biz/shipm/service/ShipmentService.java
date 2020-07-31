@@ -108,9 +108,7 @@ public class ShipmentService {
         	Date currentTime = new DateTime().toDate();
         	
         	
-        	Long id = shipmentRepository.getLastId()+1;
         	Shipment newRecord = new Shipment();
-        	newRecord.setId(id);
         	newRecord.setUsername(req.getUsername());
         	newRecord.setParentId(0L);
         	newRecord.setQuantity(req.getQuantity());
