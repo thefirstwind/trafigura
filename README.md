@@ -46,3 +46,7 @@
 
 ### POSTMAN接口请求地址
 	https://documenter.getpostman.com/view/574360/T1Dqhd7E
+
+
+## mvn deploy
+mvn deploy -Dregistry=https://maven.pkg.github.com/thefirstwind -Dtoken=GITTOKEN
